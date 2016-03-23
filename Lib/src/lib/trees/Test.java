@@ -5,7 +5,7 @@ import java.util.HashSet;
 import java.util.Scanner;
 import java.util.TreeSet;
 
-import lib.util.ArraysExt;
+import lib.util.Arrays2;
 
 public class Test {
 
@@ -71,7 +71,7 @@ public class Test {
 		for(int i = 0; i < n; i++) {
 			a[i] = reader.nextInt();
 		}
-		int[] lis = ArraysExt.LIS(a);
+		int[] lis = Arrays2.LIS(a);
 		System.out.println(Arrays.toString(lis));
 		reader.close();
 

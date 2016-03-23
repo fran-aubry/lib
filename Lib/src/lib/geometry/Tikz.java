@@ -52,6 +52,10 @@ public class Tikz {
 		dataYMIN = Math.min(q.y, dataYMIN);
 	}
 	
+	public void drawParabola(double a, double b, double c) {
+		
+	}
+	
 	public void drawSegment(Point p, Point q, String options) {
 		sb.append(String.format("\\draw[%s] (%.3f, %.3f) -- (%.3f, %.3f);\n", options, sx * p.x, sy * p.y, sx * q.x, sy * q.y)); 
 	}

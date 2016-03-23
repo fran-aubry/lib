@@ -66,6 +66,14 @@ public class Math2 {
 	    }
 	}
 	
+	public static int modPow(int a, int e, int mod) {
+		return BigInteger.valueOf(a).modPow(BigInteger.valueOf(e), BigInteger.valueOf(mod)).intValue();
+	}
+	
+	public static long modPow(long a, long e, long mod) {
+		return BigInteger.valueOf(a).modPow(BigInteger.valueOf(e), BigInteger.valueOf(mod)).longValue();
+	}
+	
 	public static long powMod(long a, int e, int mod) {
 		if(e == 0) return 1;
 	    if(e == 1) return a % mod;
@@ -118,6 +126,22 @@ public class Math2 {
 				c[i][j] = BigInteger.ZERO;
 				for(int k = 0; k < m; k++) {
 					c[i][j] = c[i][j].add(a[i][k].multiply(b[k][j]));
+				}
+			}
+		}
+		return c;
+	}
+	
+	public static double[][] multiply(double[][] a, double[][] b) {
+		int n = a.length;
+		int m = b.length;
+		int r = b[0].length;
+		double[][] c = new double[n][r];
+		for(int i = 0; i < n; i++) {
+			for(int j = 0; j < r; j++) {
+				c[i][j] = 0;
+				for(int k = 0; k < m; k++) {
+					c[i][j] += a[i][k] * b[k][j];
 				}
 			}
 		}

@@ -4,6 +4,9 @@ public class RMQTree extends Tree {
 	
 	public int[][] RMQ;
 	
+	/*
+	 * val[x] = value of node x
+	 */
 	public RMQTree(int[] T, int[] val) {
 		super(T);
 		buildRMQ(val);

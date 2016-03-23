@@ -1,6 +1,9 @@
 package lib.completeSearch;
 
+import java.math.BigInteger;
 import java.util.Arrays;
+
+import lib.numbers.Combinatorics;
 
 
 public class Permutations {
@@ -26,7 +29,7 @@ public class Permutations {
 		 */
 	}
 
-	static void iterPerm(int n, int[] p, boolean[] used, int i) {
+	public static void iterPerm(int n, int[] p, boolean[] used, int i) {
 		if(i == n) {
 			//System.out.println(Arrays.toString(p));
 		} else {
@@ -40,12 +43,20 @@ public class Permutations {
 			}
 		}
 	}
+	
+	public static int[] firstPerm(int n) {
+		int[] p = new int[n];
+		for(int i = 0; i < n; i++) {
+			p[i] = i;
+		}
+		return p;
+	}
 
-	static void iterPerm(int n) {
+	public static void iterPerm(int n) {
 		iterPermRec(0, new int[n], new BacktrackSet(n));
 	}
 
-	static void iterPermRec(int i, int[] p, BacktrackSet s) {
+	public static void iterPermRec(int i, int[] p, BacktrackSet s) {
 		if(i == p.length) {
 			System.out.println(Arrays.toString(p));
 		} else {
@@ -58,7 +69,7 @@ public class Permutations {
 		}
 	}
 
-	static boolean nextPerm(int[] p) {
+	public static boolean nextPerm(int[] p) {
 		// (1.) find the rightmost i such that p[i] < p[i + 1]
 		int i = p.length - 2;
 		while(i >= 0 && p[i] >= p[i + 1]) i--;
@@ -75,13 +86,13 @@ public class Permutations {
 		return true;
 	}
 
-	static void swap(int[] p, int i, int j) {
+	public static void swap(int[] p, int i, int j) {
 		int t = p[i];
 		p[i] = p[j];
 		p[j] = t;
 	}
 
-	static class BacktrackSet {
+	public static class BacktrackSet {
 
 		private int[] s;
 		private int size;
@@ -126,6 +137,24 @@ public class Permutations {
 			return sb.toString();
 		}
 
+	}
+	
+	public static BigInteger findIndex(int[] p) {
+		int n = p.length;
+		BigInteger F = Combinatorics.factorial(n - 1);
+		while(true) {
+			
+		}
+	}
+	
+	
+	public static void perm(int[] p, int i) {
+	    for(int a = p.length; a > 0; a--) {
+	    	int tmp = p[a - 1];
+	    	p[a - 1] = p[i];
+	    	p[i] = tmp;
+	    	i = i / a;
+	    }
 	}
 
 }

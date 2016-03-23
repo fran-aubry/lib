@@ -12,6 +12,17 @@ import java.util.TreeSet;
 
 public class NumberTheory {
 
+	public static HashSet<Integer> divisors(int x) {
+		HashSet<Integer> div = new HashSet<>();
+		for(int i = 1; i <= x / i + 1; i++) {
+			if(x % i == 0) {
+				div.add(i);
+				div.add(x / i);
+			}
+		}
+		return div;
+	}
+	
 	public static int digitSum(int x) {
 		int sum = 0;
 		while(x > 0) {

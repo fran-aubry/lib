@@ -1,12 +1,12 @@
 package lib.classic;
 
-import lib.util.ArraysExt;
+import lib.util.Arrays2;
 
 public class Partition {
 	
 	public static int partition(int[] a, int k) {
-		int max = ArraysExt.sum(a);
-		int lb = ArraysExt.min(a);
+		int max = Arrays2.sum(a);
+		int lb = Arrays2.min(a);
 		int ub = max;
 		while(ub - lb > 1) {
 			int mid = (lb + ub) / 2;

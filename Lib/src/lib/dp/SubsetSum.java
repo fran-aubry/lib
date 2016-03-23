@@ -2,7 +2,7 @@ package lib.dp;
 
 import java.util.Arrays;
 
-import lib.util.ArraysExt;
+import lib.util.Arrays2;
 
 public class SubsetSum {
 
@@ -56,7 +56,7 @@ public class SubsetSum {
 	 * Minimize |sum S1 - sum S2| such that S1 union S2 = S
 	 */
 	public static int fairSplit(int[] S) {
-		int sum = ArraysExt.sum(S);
+		int sum = Arrays2.sum(S);
 		int n = S.length;
 		boolean[][] dp = new boolean[n + 1][sum + 1];
 		dp[0][0] = true;

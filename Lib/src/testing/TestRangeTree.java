@@ -5,20 +5,54 @@ import java.awt.Graphics2D;
 import java.awt.image.BufferedImage;
 import java.io.File;
 import java.io.IOException;
+import java.util.Arrays;
 import java.util.LinkedList;
 import java.util.Random;
+import java.util.Scanner;
 
 import javax.imageio.ImageIO;
 
 import lib.geometry.Point;
 import lib.geometry.RangeTree;
-import lib.util.ArraysExt;
+import lib.trees.EdgeRMaxQTree;
+import lib.util.Arrays2;
 
 public class TestRangeTree {
 
+/*
+
+5
+0 1 1
+0 2 2
+0 3 3
+0 4 4
+
+ */
 	
 	public static void main(String[] args) {
-		makeRandomTestAllDiff(10, 100, 100);
+		makeTest();
+	}
+	
+	public static void makeTest() {
+		Scanner reader = new Scanner(System.in);
+		int n = reader.nextInt();
+		int[] T = new int[n];
+		Arrays.fill(T, -1);
+		int[] w = new int[n];
+		for(int i = 0; i < n - 1; i++) {
+			int parent = reader.nextInt();
+			int child = reader.nextInt();
+			int cost = reader.nextInt();
+			T[child] = parent;
+			w[child] = cost;
+		}
+		EdgeRMaxQTree rmq = new EdgeRMaxQTree(T, w);
+		for(int i = 0; i < n; i++) {
+			for(int j = 0; j < n; j++) {
+				System.out.println(i + " " + j + " " + rmq.rmq(i, j));
+			}
+		}
+		reader.close();
 	}
 	
 	public static void makeRandomTestAllDiff(int n, int q, int max) {
@@ -70,8 +104,8 @@ public class TestRangeTree {
 	}
 	
 	public static Point[] generateRandomAllDiffPoints(int n, int min, int max) {
-		int[] x = ArraysExt.generateRandomArray(n, true, min, max);
-		int[] y = ArraysExt.generateRandomArray(n, true, min, max);
+		int[] x = Arrays2.generateRandomArray(n, true, min, max);
+		int[] y = Arrays2.generateRandomArray(n, true, min, max);
 		Point[] p = new Point[n];
 		for(int i = 0; i < n; i++) {
 			p[i] = new Point(x[i], y[i]);

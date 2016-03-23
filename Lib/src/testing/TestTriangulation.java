@@ -251,7 +251,7 @@ public class TestTriangulation {
 		
 		System.out.println("triangulate");
 		
-		LinkedList<Triangle> T = Polygons.triangulate(pol, true);
+		LinkedList<Triangle> T = Polygons.triangulate(pol);
 	
 		Tikz ti = new Tikz();
 	

@@ -1,9 +1,12 @@
 package lib.graphs;
 
+/**
+ * Class that represents an edge in the graph.
+ */
 public class Edge {
 
-	public int orig, dest;
-	private Edge reverse;
+	public int orig, dest; // origin and destination of the edge
+	private Edge reverse; // pointer to the reverse edge (for flow algorithms)
 	
 	public Edge(int orig, int dest) {
 		this.orig = orig;

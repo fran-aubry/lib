@@ -29,21 +29,22 @@ public class TSP {
 		}
 		dp[1][0] = 0;
 		// iterate over all sets that include node 0 (odd numbers)
-		for(int s = 1; s < (1 << n); s += 2) {
+		for(int S = 1; S < (1 << n); S += 2) {
 			// iterate over last vertex candidates
 			for(int i = 1; i < n; i++) {
-				if(((s >> i) & 1) == 1) {
+				if(((S >> i) & 1) == 1) {
 					double min = Double.POSITIVE_INFINITY;
 					// iterate over previous to last
 					for(int j = 0; j < n; j++) {
-						int ss = s ^(1 << i);
-						if(((ss >> j) & 1) == 1) {
-							min = Math.min(min, dp[ss][j] + d[j][i]);
+						// compute Si = S \ i
+						int Si = S ^ (1 << i);
+						if(((Si >> j) & 1) == 1) {
+							min = Math.min(min, dp[Si][j] + d[j][i]);
 						}
 					}
-					dp[s][i] = min;
+					dp[S][i] = min;
 				} else{
-					dp[s][i] = Double.POSITIVE_INFINITY;
+					dp[S][i] = Double.POSITIVE_INFINITY;
 				}
 			}
 		}

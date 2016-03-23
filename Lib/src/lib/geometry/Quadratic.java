@@ -12,8 +12,12 @@ public class Quadratic {
 		this.c = c;
 	}
 	
+	public double eval(double x) {
+		return a * x * x + b * x + c;
+	}
+	
 	public boolean hasRealRoots() {
-		return Cmp.eq(b * b, 4 * a * c);
+		return !Cmp.eq(b * b, 4 * a * c);
 	}
 	
 	/**
@@ -48,5 +52,9 @@ public class Quadratic {
 	/*
 	 * (x - r)^2 = x^2 - 2x r + r^2
 	 */
+	
+	public String toString() {
+		return String.format("%.3f %.3f %.3f", a, b, c);
+	}
 	
 }

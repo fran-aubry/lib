@@ -143,7 +143,7 @@ public class Intersection {
 			 *  in which case the center of the cycle is also inside
 			 *  or the intersection is empty
 			 */
-			if(Polygons.contains(pol, C.center)) {
+			if(Polygons.inPolygon(pol, C.center)) {
 				return C.area();
 			}
 			return 0;

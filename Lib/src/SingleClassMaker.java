@@ -12,9 +12,10 @@ import java.util.concurrent.SynchronousQueue;
 
 public class SingleClassMaker {
 
-	private static final String LIB_PATH = "/home/francois/workspace/Lib/src/lib/";
-	private static final String SOURCE_PATH = "/home/francois/workspace/uHunt/src/chap5/";
-	private static final String OUT_PATH = "/home/francois/workspace/Lib/src/";
+	private static final String LIB_PATH = "/home/francois/Documents/lib/lib/Lib/src/lib/";
+	//private static final String SOURCE_PATH = "/home/francois/workspace2/uHunt/src/chap4/";
+	private static final String SOURCE_PATH = "/home/francois/workspace2/UAC/src/UAC12016/";
+	private static final String OUT_PATH = "/home/francois/Documents/lib/lib/Lib/src/";
 	
 	private static File sourcefile;
 	private static String classname;
@@ -28,7 +29,7 @@ public class SingleClassMaker {
 		System.out.println("classname?");
 		classname = reader.next();
 		sourcefile = new File(SOURCE_PATH + classname + ".java");
-		dependencies = findDependencies(sourcefile);
+		dependencies = findDependencies(sourcefile, new HashSet<String>());
 		buildOutput();
 		reader.close();
 	}
@@ -108,8 +109,9 @@ public class SingleClassMaker {
 		return lines;
 	}
 	
-	static Dependencies findDependencies(File file) {
+	static Dependencies findDependencies(File file, HashSet<String> processed) {
 		Dependencies dep = new Dependencies();
+		System.out.println(processed);
 		try {
 			Scanner reader = new Scanner(new FileReader(file));
 			while(reader.hasNextLine()) {
@@ -131,16 +133,17 @@ public class SingleClassMaker {
 						String c6 = "(" + classname + " ";
 						String c7 = "(" + classname + "[";
 						String c8 = "(" + classname + ".";
-						String c9 = ")" + classname + ".";
-						
-						
+						String c9 = ")" + classname + ".";						
 						if(line.contains(c1) || line.contains(c2) || line.contains(c3) || line.contains(c4) || line.contains(c5) || line.contains(c6) || line.contains(c7) || line.contains(c8) || line.contains(c9)) {
+							if(processed.contains(classname)) continue;
 							if(classname.equals("Tree")) {
 								System.out.println();
 							}
 							if(file.getName().equals(classname + ".java")) continue;
+							processed.add(classname);
 							dep.addLib(classname);
-							dep.merge(findDependencies(libClasses.get(classname)));
+							System.out.println(classname);
+							dep.merge(findDependencies(libClasses.get(classname), processed));
 						}
 					}
 				}
@@ -190,5 +193,6 @@ public class SingleClassMaker {
 		}
 
 	}
+	
 
 }

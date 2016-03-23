@@ -2,6 +2,21 @@ package lib.dp;
 
 public class AcSum {
 
+	public static long[] acsum(int[] a) {
+		int n = a.length;
+		long[] acs = new long[n];
+		acs[0] = a[0];
+		for(int i = 1; i < n; i++) {
+			acs[i] = a[i] + acs[i - 1];
+		}
+		return acs;
+	}
+	
+	public static long sum(long[] acs, int i, int j) {
+		if(i == 0) return acs[j];
+		return acs[j] - acs[i - 1];
+	}
+	
 	/*
 	 * Return the accumulated sum matrix of M.
 	 */
@@ -36,5 +51,6 @@ public class AcSum {
 		if(i1 > 0 && j1 > 0) S += acs[i1 - 1][j1 - 1];
 		return S;
 	}
+	
 	
 }
